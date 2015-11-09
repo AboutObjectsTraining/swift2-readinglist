@@ -30,7 +30,6 @@
 		AB44B5951B6FFA2E00DC6645 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB44B5931B6FFA2E00DC6645 /* LaunchScreen.storyboard */; };
 		AB44B5A01B6FFA2E00DC6645 /* swift2_readinglistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB44B59F1B6FFA2E00DC6645 /* swift2_readinglistTests.swift */; };
 		AB44B5AB1B6FFA2E00DC6645 /* swift2_readinglistUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB44B5AA1B6FFA2E00DC6645 /* swift2_readinglistUITests.swift */; };
-		AB7E4A0B1BF15570006EA210 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = AB7E4A0A1BF15570006EA210 /* README.md */; };
 		AB7E4A0D1BF15578006EA210 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB7E4A0C1BF15578006EA210 /* LICENSE.txt */; };
 		AB7E4A131BF157CE006EA210 /* action-sheet.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7E4A0F1BF157CE006EA210 /* action-sheet.png */; };
 		AB7E4A141BF157CE006EA210 /* book-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7E4A101BF157CE006EA210 /* book-detail.png */; };
@@ -500,7 +499,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB7E4A0B1BF15570006EA210 /* README.md in Sources */,
 				AB053B7B1BEE6FB500193A7C /* BookSummaryCell.swift in Sources */,
 				AB44B58D1B6FFA2E00DC6645 /* ReadingListViewController.swift in Sources */,
 				AB053BEF1BEEAADC00193A7C /* UIColor+ReadingList.swift in Sources */,
