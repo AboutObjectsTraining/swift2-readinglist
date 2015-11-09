@@ -23,13 +23,13 @@ Illustrates the use of the Swift language in the implementation of fairly typica
 
 ## Screenshots
 
-![](images/screenshot-list.png)
+![](Screenshots/reading-list.png)
 <span style="width: 36px;">&nbsp;&nbsp;&nbsp;<span>
-![](images/screenshot-list-edit.png)
+![](Screenshots/swiped-cell.png)
 <span style="width: 36px;">&nbsp;&nbsp;&nbsp;<span>
-![](images/screenshot-view.png)
+![](Screenshots/action-sheet.png)
 <span style="width: 36px;">&nbsp;&nbsp;&nbsp;<span>
-![](images/screenshot-edit.png)
+![](Screenshots/book-detail.png)
 
 ## Targets
 
