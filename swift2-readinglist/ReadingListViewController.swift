@@ -6,16 +6,15 @@ import UIKit
 import ReadingListModel
 
 let ReadingListFileName = "BooksAndAuthors"
+let WebServiceURLString = "http://www.mocky.io/v2/564117c91100005e06578a92"
 
 class ReadingListViewController: UITableViewController
 {
     private var objectStore: ReadingListStore!
     private var readingList: ReadingList!
     
-    override func viewDidLoad()
+    private func loadReadingList()
     {
-        super.viewDidLoad()
-        
         objectStore = ReadingListStore(ReadingListFileName)
         
         do {
@@ -25,8 +24,79 @@ class ReadingListViewController: UITableViewController
         catch (let error) {
             print("Unable to load file named: \(ReadingListFileName); error was: \(error)")
         }
+    }
+    
+    private func configureNavigationController()
+    {
+        navigationController?.toolbarHidden = false
         
 //        navigationItem.leftBarButtonItem = editButtonItem()
+    }
+    
+    
+    private func performWebServiceCall()
+    {
+        guard let URL = NSURL(string: WebServiceURLString) else {
+            print("Malformed URL: \(WebServiceURLString)")
+            abort() // TODO: throw an error here...
+        }
+        
+        let session = NSURLSession.sharedSession().dataTaskWithURL(URL) { data, response, error in
+            self.handleWebResponse(data, response: response as? NSHTTPURLResponse, error: error)
+        }
+        
+        session.resume()
+    }
+    
+    private func handleWebResponse(data: NSData?, response: NSHTTPURLResponse?, error: NSError?)
+    {
+        if error != nil {
+            abort() // TODO: throw an error here...
+        }
+        
+        guard let JSONData = data where response?.statusCode == 200 else {
+            abort() // TODO: throw an error here...
+        }
+        
+        do {
+            guard let dict = try NSJSONSerialization.JSONObjectWithData(JSONData, options: .AllowFragments) as? [String: AnyObject] else {
+                abort() // TODO: throw an error here...
+            }
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                self.updateReadingList(dict)
+            })
+        }
+        catch {
+            
+        }
+    }
+    
+    private func updateReadingList(dictionary: [String: AnyObject])
+    {
+        readingList = ReadingList(dictionary: dictionary)
+        print("\(readingList)")
+        tableView.reloadData()
+    }
+    
+    // MARK: Action Methods
+    
+    @IBAction func revert(sender: AnyObject)
+    {
+        // TODO: Present action sheet to confirm
+        
+        performWebServiceCall()
+    }
+    
+    
+    // MARK: UIViewController Methods
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        loadReadingList()
+        configureNavigationController()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
